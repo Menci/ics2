@@ -12,6 +12,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include <string.h>
+#include <stdint.h>
 #include <assert.h>
 #include <float.h>
 #include <time.h>
@@ -31,7 +32,7 @@
 #define LINENUM(i) (i+5) /* cnvt trace request nums to linenums (origin 1) */
 
 /* Returns true if p is ALIGNMENT-byte aligned */
-#define IS_ALIGNED(p)  ((((unsigned int)(p)) % ALIGNMENT) == 0)
+#define IS_ALIGNED(p)  ((((uintptr_t)(p)) % ALIGNMENT) == 0)
 
 /****************************** 
  * The key compound data types 

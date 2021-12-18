@@ -9,7 +9,7 @@ HANDINDIR = /home/handin-malloc
 
 CC = gcc
 #CFLAGS = -Wall -g3 -m32 -std=gnu99 -Dinline= -DDEBUG
-CFLAGS = -Wall -g -O2 -m32 -std=gnu99
+CFLAGS = -Wall -Ofast -flto -std=gnu99
 
 OBJS = mdriver.o mm.o memlib.o fsecs.o fcyc.o clock.o ftimer.o
 

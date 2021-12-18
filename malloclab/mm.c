@@ -26,6 +26,8 @@
 #include "mm.h"
 #include "memlib.h"
 
+#define inline inline static
+
 /*********************************************************
  * NOTE TO STUDENTS: After you did everything else, please
  * provide no team information in the following struct.
@@ -838,7 +840,7 @@ inline block_t extend(size_t wanted_block_size) {
 void mm_validate_blocks();
 #endif
 
-inline int mm_init(void) {
+int mm_init(void) {
     rb_init();
 
     mem_sbrk(HEAP_HEADER_SIZE + INIT_HEAP_AVAILABLE_SIZE);
@@ -851,7 +853,7 @@ inline int mm_init(void) {
     return 0;
 }
 
-inline void *mm_malloc(size_t request_size) {
+void *mm_malloc(size_t request_size) {
     if (request_size == 0) return NULL;
 
     size_t length = block_length_from_payload_size(request_size);
@@ -901,7 +903,7 @@ inline void *mm_malloc(size_t request_size) {
     return payload;
 }
 
-inline void mm_free(void *ptr) {
+void mm_free(void *ptr) {
     assert(ptr > mem_heap_lo() && ptr < mem_heap_hi());
 
     block_t block = get_payload_block(ptr), merged_block = block;
@@ -954,7 +956,7 @@ inline void *mm_realloc_by_malloc_free(void *ptr, size_t size) {
     return new_payload;
 }
 
-inline void *mm_realloc(void *ptr, size_t size) {
+void *mm_realloc(void *ptr, size_t size) {
     if (size == 0) {
         mm_free(ptr);
         return NULL;
